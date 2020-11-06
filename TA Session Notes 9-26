@@ -1,0 +1,53 @@
+TA Session 9/26
+- Made a .gitignore file
+- Tried to cover IntelliJ, Eclipse and Java files
+- They said that it's okay that it came from the internet
+- Need to make sure we don't push IDE / local environment files
+
+- Need to use Java version 8 or greater (lower versions don't support lambdas)
+- And everyone needs to be on the same version
+
+- Do frequent, small commits to make it easier to track issues
+- Don't email code and have teammates commit for you
+
+- Create a bunch of issues on github with items to implement
+- ex. frontend login, backend login, setup database, pick an api for something, etc
+- Use Labels for ToDo, In Progress, etc
+
+- (Use the same name as the issue you are working on)
+- Branches should live for a couple days, tickets/issues should be small
+- git branch <new-branch>  
+- git checkout <branch-name>
+- delete a branch on your machine locally: git branch -d <finished-issue>  (I think)
+
+- Create branches for new features
+- Commit changes to branch but always pull from master
+- You want to be pulling master updates into your branch frequently, and definitely
+- right before doing the pull request -> you need other people's updates!
+- (so you don't lose your work or delete someone else's)
+- Create pull request: assign people to review (only one of the people chosen needs to approve)
+- After approved, the merge with master button is available
+- Close the branch once you're finished
+
+- Insights tab will show merges across branches
+- push and pull from YOUR branch
+- the graph should look as simple as possible
+
+- Jenkins
+- Do not edit the Jenkinsfile!
+- https://www.5500jenkins-1.khourycloud.com/job/FSE/
+
+- Maven
+- New Project
+- Set correct SDK
+- Maven project from left-hand list
+- Check the box for "Create from archetype"
+- Choose the one that ends in -quickstart, then hit next
+- GroupId: org.neu
+- ArtifactId: PlagiarismDetector
+- Created PlagiarismDetector project inside Project_src folder
+
+- Sonarlint
+- Add sonarlint project to IntelliJ
+- File > Settings > Plugins > search for sonarlint, install
+- Restart IntelliJ, now there is a SonarLint in the bottom left corner next to TODO

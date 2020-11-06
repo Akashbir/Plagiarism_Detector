@@ -1,0 +1,9 @@
+Team 3: 93/100
+
+Below are some comments about your response to the code review and peer review:
+
+- directory structure is very clean now, no files hanging around randomly
+- documentation added to the ast classes
+- did not address comments about lack of documentation in the tests and lack of readability of the ASTtests because of the huge strings 
+- comment about removing track directory is no longer relevant, since this directory has a purpose now
+- overall, good response to feedback

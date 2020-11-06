@@ -1,0 +1,7 @@
+Score: 89
+- UI mockups are not very detailed  
+- nice inclusion of error handling popups
+- UML class diagram is nice, but you don't need to have both an abstract class and an interface to describe the same components
+- we assume that you'll be using ANTLR to generate the ASTs (thus ignoring the AST-related interfaces in your repo)
+- methods like "runDetection" and "providesSimilarities" should probably return an object of some interface type "SimilarityReport" (maybe your Similarity object depending on what you envision it doing) or something similar, rather than being void
+- the String chooseAlgorithm (argument to setDepth) could be an enum type instead of just a freeform String

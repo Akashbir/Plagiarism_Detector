@@ -1,0 +1,9 @@
+Group 3 ---- 89
+- UI: could have shown highlighting of similar code fragments
+- UI: good to show markup for error message scenario
+- depth of comparison seems like a useful feature when processing time becomes an issue
+- class diagram: not clear hwy you use both interfaces and abstract classes for system components
+- we strongly recommend using an existing solution for building ASTs, like ANTLR
+- removing comments: this means you cannot check for similarities in comments
+- normalizing over simple lexical modifications will be interesting if they can get it working
+- division of work not clear

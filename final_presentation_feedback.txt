@@ -1,0 +1,14 @@
+Group 3 -- 91/100
+
+Overall, it was a good presentation, and the team did good job while adopting a very general approach. Below are some specific comments/feedback:
+
+Pros: 
+- the work should carry over well to many other languages given the way the implementation is structured
+- the team implemented 4 different algorithms, and covered 3 programming languages which is very good
+- the presentation covered various aspects of the project (user-interface, algorithms used, lessons learned, room for improvement)
+- the demo was good, showing good error handling beyond the obvious side-by-side view with highlighting of plagiarized code fragments
+
+Cons:
+- using a string-based algorithm will limit the effectiveness of the plagiarism detector 
+- it seemed like there were some issues with the group dynamics, with different levels of involvement by the team members (though not to an extent that this seemed to be a problem)
+- work on the visitor-based algorithm was incomplete at the time of the presentation

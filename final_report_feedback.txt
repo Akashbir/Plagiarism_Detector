@@ -1,0 +1,9 @@
+Team 3: 93/100
+
+Team 3 did a very good job on the final report, which includes a discussion of the algorithms used, an overview of the design and how it evolved from the original design in Phase B, a discussion of the use of design patterns and how they were helpful to achieve a flexible and extensible design, and a good discussion of the limitations of the plagiarism detector and lessons learned from doing the project. The report is well-organized and the quality of the writing is good.  Below are some comments:
+  - it is good that you are providing citations for the algorithms used, but please try to avoid using web sites whenever possible because the content is generally not peer-reviewed, and the information on web sites may not be stable. I’m sure that a better citation can be found for the Edit Distance algorithm
+  - the idea of having “structural” versions of the algorithms is a good one, and I know from the presentation what you mean by this. However, from the report by itself, it is not clear what is meant and some additional explanation and a small example would have been helpful.
+  - the discussion of lessons learned is very good.
+  
+Overall, very good job!
+

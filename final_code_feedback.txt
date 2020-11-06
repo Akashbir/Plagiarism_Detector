@@ -1,0 +1,18 @@
+Team 3: 94/100
+
+Below are some comments, both good and bad, about the code base in the repo's master branch.
+
+- good detailed install instructions, although ideally it should be in a readme instead of a pdf in the code directory
+- the instructions (or readme if there was one) should include more detailed information about the structure of the source code directories -- what code is where, and what is the general purpose/reasoning behind the structure
+- good job: the repo is clean, there's no junk files floating around and it seems well organized
+- nice use of the factory pattern (for the tree factories); but there seems to be so much code duplication between the subclasses (especially noticeable in the long-ish getStructuralTree method), that i wonder if you really need a factory. You might be able to just have a single LanguageTreeFactory that takes a language as a constructor parameter, and have everything parametrized over this. Alternatively, if there really is important language-specific functionality, you should definitely be able to abstract out the getStructuralTree method and maybe make the TreeFactory interface an abstract class instead.
+- good documentation, good javadocs in the algorithms files
+- adhered to java naming conventions
+- nice job with the algorithm, having the Algorithm interface makes sense and the structure of the setup is clear. Also, good job making such a variety of algorithms.
+- also nice work making some tree and some string algorithms, but even the tree algorithms work over a string representation of the AST instead of using the visitor pattern on the ANTLR tree nodes, which introduces some limitations
+- zero documentation in the controller
+- no documentation in the test files
+- some tests have very long string comparisons (the AST tests); this could potentially have been simplified by having an expected output file to compare to, which would really clean up the file
+- looks like a pretty solid test suite, apart from the total lack of documentation. probably could've benefited from more than just one test for each language AST.
+- reasonable commit messages
+- good job using issues, although it seems like the only one using them was George

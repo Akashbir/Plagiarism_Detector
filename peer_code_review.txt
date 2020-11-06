@@ -1,0 +1,259 @@
+Directory: Root
+- There's a hanoi.py file here not sure why
+- You also have the same file in your res directory
+
+File: app.java
+- Only seems to print "hello world"
+- Not enough documentation to know what this file is for
+- Comment says "can be thrown out" so I guess that is the plan?
+
+File: ASTParser.java
+- Appears to be a driver or controller? Does it belong in a directory? Or perhaps give it a clearer name
+- Also this file is duplicated exactly in your mvc directory
+
+File: Similarity.java
+- What's a similarity object? I'm not sure I understand what it is.
+- Also I don't understand why its directory is called "track" is it tracking similarities?
+
+File: Algorithm.java
+- Now I think I understand what the similarity object is, but I think these files can go in the same directory?
+
+File: LCS.java
+- The compare and lcs methods in this class are very long
+
+Directory: ast
+- Not much documentation in the files
+
+File: ASTTest.java
+- No documentation
+- The tests are difficult to read because of the inputs, but I suppose it's necessary since there doesn't appear to be a file handler yet
+
+File: LCSTest.java
+- No documentation
+
+
+
+Folder structure:
+1) The folder called "track" ideally shouldn't exist. The class inside it looks like a model class and
+it should be in a separate "models" folder.
+
+Duplicate files:
+1) There is an ASTParser in the default package as well as inside the package named "mvc"
+
+src/compare/LCS.java :
+The function lcs() is relatively long and could benefit by the use of some refactoring to maybe
+extract the for loops into a helper method.
+
+src/compare/EditDistance:
+The instance of the class should ideally be created inside the getInstance() method instead of
+having it done outside.
+
+test/ASTTest.java:
+1) None of the tests have any documentation.
+2) testNullCppFactory and testNullPythonFactory aren't testing how your program handles null
+pointer exceptions. The errors being thrown are not being thrown by your code but rather just
+the java compiler. Calling a function from a null object is going to throw an error. It would be
+more useful if you passed a null value to one of your methods and then tested whether your
+program handles the null value correctly.
+
+test/LCSTest.java
+1) None of the tests have any documentation.
+2) The statement : "Algorithm lcs = LCS.getInstance();" appears to be used in every test. It could
+be useful to initialize this in a setup() function before all the tests to remove the redundancy.
+
+
+
+
+
+Type: Abstraction needed
+Location: Project_src/src/main/java/org/neu/mvc/ASTParser.java, Lines 29 - 40.
+Problem: Logic for implementing a C++ parser and Python parser is the same, could be abstracted using the factory pattern.
+
+Type: Minor implementation detail
+Location: Project_src/src/main/java/org/neu/compare/LCS.java, Line 21.
+Problem: Should instantiate the LCS object when you first get its reference, in getInstance().
+
+Type: Variable name
+Location: Project_src/src/main/java/org/neu/compare/LCS.java, Line 95 - 96.
+Problem: c and s are poor variable names, not descriptive of what they hold.
+
+Type: Minor implementation detail
+Location: Project_src/src/main/java/org/neu/compare/EditDistance.java, Line 18.
+Problem: Should instantiate the EditDistance object when you first get its reference, in getInstance().
+
+Type: Duplicate code
+Location: Project_src/src/main/java/org/neu/compare/EditDistance.java, Lines 44-53
+Problem: Identical code from LCS, should abstract.
+
+Type: Problem approach
+Problem: LCS between two string representations of an AST can be a bit of a brittle approach. If something small changes in the structure of the AST, or if the string representation changes unexpectedly, then the entire algorithm wouldn't function properly.
+
+
+
+
+Issue 1
+Project_src/src/main/java/org/neu/compare/LCS.java
+Line 95
+bad/confusing variable name
+variable 'c' is not descriptive. Variable names should be descriptive
+
+Issue 2
+Project_src/src/main/java/org/neu/track/Similarity.java
+Line 39
+Lack of documentation
+Method toString() is missing java doc
+
+Issue 3
+Project_src/src/test/java/org/neu/ASTTest.java
+Whole File
+Lack of documentation
+Entire test suite is missing documentation
+
+Issue 4
+Project_src/src/test/java/org/neu/LCSTest.java
+Whole File
+Lack of documentation
+Entire test suite is missing documentation
+
+Issue 5
+Project_src/src/test/java/org/neu/LCSTest.java
+Line 13
+Unused import
+import static junit.framework.TestCase.assertEquals;
+is not being used. Unnecessary imports should be avoided
+
+Issue 6
+Project_src/src/main/java/org/neu/ast/PythonTreeFactory.java
+Line 20
+Missing documentation
+method is missing a javadoc
+
+
+
+General Files
+---------------
+
+-Class App in package track seems to have no purpose.. should probably delete.. it is a default creation of maven
+-AST Parser main method signature says throws an exception but no try catch block to catch and throw exceptions
+- Nice use of packages to keep code organized.
+
+
+Package - Track
+---------------
+-toString not commented
+- right and left might not be the best description maybe documentOneLine and documentTwoLine
+	-what makes a document the right document vs the left document
+
+Package - MVC
+---------------
+- package labeled MVC but only the driver is present
+- why is this almost identical to the other driver? present outside this package? Need for two?
+- there should be a distinct model view and controller classes.. It might be better if these were made initially
+so that the project can be put together when all the components are ready rather then deciding how everything 
+fits at the end.
+
+Package - Compare
+-----------------
+- Nice use of interface so can expand on various algorithms to use.
+- line 115 - Edit Distance is just wrong, can't instantiate a list of Strings after declaring it type ArrayList
+
+Package - Ast
+----------------
+-I think this is not the proper implementation of the factory methodology or the term factory is being used improperly here
+- maybe a better methodology might be having a factory that takes in the file name for a constructor and based on the extension 
+creates the desired type of parse tree by calling the function called ex: createParseTree
+
+
+
+
+
+
+res/:
+	- Only 1 file for each language. When testing comparison, need multiple combinations of files for both c++ and python. 
+	- Store multiple file assignments in directories
+	- Try to have a variety of code features in your sample source files. e.g. for loops, while loops, if/else/switch statements, class definitions, method definitions and calls, global variable declarations, etc.
+
+ASTParser.java:
+	- Currently hardcoding in the file paths
+	- Same file path passed in for pyFactory.generateTree as well as pyFactory.text? It would make more sense to pass in the file path once to a factory, which handles both parsing the tree and creating the string
+	- Right now you are only printing the string, not storing it anywhere for future use; the parser could contain attributes such as the factory and parseTree
+	- Need more methods besides main, otherwise the class would be static and it is not denoted as such
+
+App.java:
+	- Documentation is unclear, the comment says "can be thrown out" but there is no explanation as to why this class is temporary
+	- Initializing the final int as 10 is confusing; why is this intentionally triggering sonarlint? Does this value get used?
+
+ast/TreeFactory.java:
+	- Same parameter is used for both methods text and generateTree. Instead, I would use a constructor that takes in a single file path and uses it for both methods. 
+	- Rename text to toString, and add the @Override tag
+
+ast/PythonTreeFactory.java:
+	- Why make the createParser a private method, when the public generateTree calls it and it is only 1 line in length? Better to just implement generateTree
+	- Constructor does not do anything, but it should set this.filename to be a private String field
+
+ast/CppTreeFactory.java:
+	- Same as above, constructor does nothing and the createParser method is private but could be the same as generateTree
+	- Good comments on createParser but PythonTreeFatory needs the same amount of documentation; both classes would benefit from more
+
+compare/Algorithm.java:
+	- If there is only one method (compare), need to make this an interface? Might be able to simply by only having the subclasses without overriding compare
+
+compare/EditDistance.java:
+	- Constructor does not do anything; should probably take in two ASTs to compare
+	- Documentation is unclear about the purpose of getInstance
+	
+compare/LCS.java:
+	- Constructor does not do anything; should probably take in two ASTs to compare
+	- Documentation is unclear about the purpose of getInstance
+	- Instead of returning a new ArrayList<>(lines) in the last line of getFileLines, could initialize an empty ArrayList at the beginning of the method, and then add each line to the list during each iteration of the loop
+	- Should include justification of 85% comparison threshold
+
+track/Similarity.java:
+	- This class stores two similar lines, but is it necessary? Could accomplish the same task by storing a List or set of Pairs, or a Map of two ints
+	- May want to store the String values contained in the lines according to the line numbers, for the purposes of displaying the similar lines in your final result
+
+
+
+
+
+General:
+        There's two static main, which is probably a temporary thing. It'd be a good idea to get rid
+        of one.
+
+        Documentation is good and where it should be. Test case-plans are good, even though a lot of the
+        tests are not written yet. 
+
+        The factory for the trees can be refactored a little bit. The "text" method may not belong the 
+        factory itself, but rather a ParseTree.
+
+    compare
+        Algorithm:
+        1.  Can be renamed IAlgorithm, since it is an interface.
+
+        EditDistance:
+        1.  When I open this up, this class is full of errors and can't be executed. At Line 124, there 
+        is a reference to "Similarities" which don't exist. Well done on using abstractions though (such
+        as List).
+
+        LCS
+        1.  Line: 57
+            There is a hard-coded threshold here of 85%. This could be a variable within the class that
+            could be changed, to give more control of how sensitive the algorithm should be.
+
+    track
+        Similarity:
+        1.  There is a general use of "left file" and "right file" in the code which can be a tad misleading.
+            Do the files really have a spatial location? What if, the future, you could compare more than 2
+            files? Even if it is incredibly nitpicky, I'd call the files/submissions file1 and file2, isntead
+            of giving them some kind of relational location.
+    
+    ast
+        CppTreeFactory/PythonTreeFactory/TreeFactory:
+        1.  Although it is nice to be able to get a textual representation for things like testing, or just 
+            plain experimenting, it does not make sense to have that in a factory class. The way it is
+            implemented, it even has to re-open the file that is of interested.
+
+            This method could be refactored and moved into a ParseTree class (like an abstract ParseTree).
+        
+        TreeFactory:
+        1.  Can be renamed ITreeFactory (since it is an interface).
